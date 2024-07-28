@@ -1,6 +1,8 @@
 PowerMeter with Qt GUI
 This project is a power meter utilizing the STM32G031 microcontroller, the W5500 Ethernet module, and the INA219 I2C Bidirectional Current Sensor Module. It features a Qt-based graphical user interface (GUI) for visualizing power data.
+
 ![Sample](https://github.com/Emrecanbl/PowerMeter-with-Qt-Gui/blob/main/Screenshot.png?raw=true)
+
 Table of Contents
 Introduction
 Features
@@ -45,8 +47,7 @@ Connect STM32G031:
 
 Flash the STM32 firmware to the microcontroller
 Power the microcontroller with a suitable power supply
-Software Installation
-Clone the Repository:
+
 ![Sample](https://github.com/Emrecanbl/PowerMeter-with-Qt-Gui/blob/main/Screenshot_1.png?raw=true)
 
 Power Up the System:
