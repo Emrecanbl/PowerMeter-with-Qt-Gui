@@ -1,0 +1,15 @@
+../Core/Src/INA219.c:17:10:Read16	1
+../Core/Src/INA219.c:27:6:Write16	1
+../Core/Src/INA219.c:35:10:INA219_ReadBusVoltage	1
+../Core/Src/INA219.c:43:9:INA219_ReadCurrent_raw	1
+../Core/Src/INA219.c:50:9:INA219_ReadCurrent	1
+../Core/Src/INA219.c:57:10:INA219_ReadShuntVolage	1
+../Core/Src/INA219.c:64:6:INA219_Reset	1
+../Core/Src/INA219.c:70:6:INA219_setCalibration	1
+../Core/Src/INA219.c:75:10:INA219_getConfig	1
+../Core/Src/INA219.c:81:6:INA219_setConfig	1
+../Core/Src/INA219.c:86:6:INA219_setCalibration_32V_2A	1
+../Core/Src/INA219.c:101:6:INA219_setCalibration_32V_1A	1
+../Core/Src/INA219.c:116:6:INA219_setCalibration_16V_400mA	1
+../Core/Src/INA219.c:131:6:INA219_setPowerMode	7
+../Core/Src/INA219.c:158:9:INA219_Init	2
