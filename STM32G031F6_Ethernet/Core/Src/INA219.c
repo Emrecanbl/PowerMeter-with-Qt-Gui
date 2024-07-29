@@ -1,8 +1,6 @@
 /*
  * INA219.c
  *
- *  Created on: Dec 30, 2020
- *       Author: Piotr Smolen <komuch@gmail.com>
  */
 
 #include "main.h"
