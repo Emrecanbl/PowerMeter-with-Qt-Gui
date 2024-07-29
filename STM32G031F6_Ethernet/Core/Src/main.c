@@ -41,7 +41,7 @@
 
 //Power
 uint16_t vbus, vshunt, current,Power;
-uint16_t Total_power;
+uint16_t Total_power,Last_Total_power;
 uint16_t Second;
 //W5500 Settings
 #define SOCK_TCPC   0
@@ -61,7 +61,7 @@ uint8_t RSR_len;
 uint8_t data_buf[]="Start";
 uint8_t Disconnect;
 uint8_t socket_id=22;
-uint8_t State = 1;
+uint8_t State = 0;
 
 /* USER CODE END PD */
 
@@ -184,18 +184,23 @@ int main(void)
 	  __HAL_TIM_SET_COUNTER(&htim2,0);
 	  Power=(((float)(vbus)/1000*(float)(current)/1000))*10;//W*10
 	  Total_power = Total_power + (((float)(Power)/10)*((float)(Second)/(3600*1000)))*100*10;//mW/h*10
-	  //Mode Selector
-	 if(data_buf=="Ready"){
-		 vbus = 0;
-		 current =0;
-		 Power = 0;
+	  recv_len = recv(SOCK_TCPC, data_buf, sizeof(data_buf));
+	  	  if (recv_len > 0) {
+	  	  	  	          	  data_buf[recv_len] = '\0';
+	  	  	  	            }
+	  //Command
+	  if(strstr(data_buf,"Start") != 0){
 		 Total_power =0;
+		 State == 1;
 	 }
 
-	 else if(data_buf=="Reset"){
-	  		   Total_power = 0;
+	 else if(strstr(data_buf,"Pause") != 0){
+	  		   Total_power = Last_Total_power;
 	  	   	}
-	 else if(data_buf=="Disco"){
+	 else if(strstr(data_buf,"Reset") != 0){
+	 	  		   Total_power = 0;
+	 	  	   	}
+	 else if(strstr(data_buf,"Disco") != 0){
 		 disconnect(SOCK_TCPC);
 		 close(SOCK_TCPC);
 		 Total_power = 0;
@@ -205,14 +210,12 @@ int main(void)
 	 	 Power = 0;
 	 	 Total_power =0;
 	 	 }
+
 	  if(Connect== SOCK_OK && State == 1){
 		  sprintf(Send, "V=%d,A=%d,W=%d,mW/H=%d" ,vbus,current,Power,Total_power);
 	      send(s,Send,strlen(Send));
 	      	   }
-	  recv_len = recv(SOCK_TCPC, data_buf, sizeof(data_buf));
-	  if (recv_len > 0) {
-	  	  	          	  data_buf[recv_len] = '\0';
-	  	  	            }
+	  Last_Total_power = Total_power;
 	  HAL_Delay(1000);
 	  Second =__HAL_TIM_GET_COUNTER(&htim2);
     /* USER CODE END WHILE */
