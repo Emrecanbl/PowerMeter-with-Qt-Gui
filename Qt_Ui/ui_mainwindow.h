@@ -44,6 +44,7 @@ public:
     QPushButton *pushButton_Start;
     QPushButton *pushButton_Reset;
     QPushButton *pushButton_Reset_2;
+    QPushButton *pushButton_Pause;
     QMenuBar *menubar;
     QMenu *menuPower_Meter;
     QStatusBar *statusbar;
@@ -52,26 +53,26 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(800, 270);
+        MainWindow->resize(800, 304);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         comboBox_client_list = new QComboBox(centralwidget);
         comboBox_client_list->setObjectName("comboBox_client_list");
-        comboBox_client_list->setGeometry(QRect(360, 180, 91, 31));
+        comboBox_client_list->setGeometry(QRect(360, 220, 91, 31));
         comboBox_Client_type = new QComboBox(centralwidget);
         comboBox_Client_type->addItem(QString());
         comboBox_Client_type->addItem(QString());
         comboBox_Client_type->setObjectName("comboBox_Client_type");
-        comboBox_Client_type->setGeometry(QRect(460, 180, 91, 31));
+        comboBox_Client_type->setGeometry(QRect(460, 220, 91, 31));
         pushButton_Send_Command = new QPushButton(centralwidget);
         pushButton_Send_Command->setObjectName("pushButton_Send_Command");
-        pushButton_Send_Command->setGeometry(QRect(670, 180, 101, 31));
+        pushButton_Send_Command->setGeometry(QRect(670, 220, 111, 31));
         lineEdit_Send_command = new QLineEdit(centralwidget);
         lineEdit_Send_command->setObjectName("lineEdit_Send_command");
-        lineEdit_Send_command->setGeometry(QRect(560, 180, 101, 31));
+        lineEdit_Send_command->setGeometry(QRect(560, 220, 101, 31));
         textEdit_Client_message = new QTextEdit(centralwidget);
         textEdit_Client_message->setObjectName("textEdit_Client_message");
-        textEdit_Client_message->setGeometry(QRect(360, 20, 421, 151));
+        textEdit_Client_message->setGeometry(QRect(360, 10, 421, 201));
         textEdit_Client_message->setReadOnly(false);
         textEdit_Voltage = new QTextEdit(centralwidget);
         textEdit_Voltage->setObjectName("textEdit_Voltage");
@@ -130,14 +131,17 @@ public:
         pushButton_Start->setGeometry(QRect(10, 180, 101, 31));
         pushButton_Reset = new QPushButton(centralwidget);
         pushButton_Reset->setObjectName("pushButton_Reset");
-        pushButton_Reset->setGeometry(QRect(120, 180, 101, 31));
+        pushButton_Reset->setGeometry(QRect(240, 180, 101, 31));
         pushButton_Reset_2 = new QPushButton(centralwidget);
         pushButton_Reset_2->setObjectName("pushButton_Reset_2");
-        pushButton_Reset_2->setGeometry(QRect(230, 180, 101, 31));
+        pushButton_Reset_2->setGeometry(QRect(10, 220, 331, 31));
+        pushButton_Pause = new QPushButton(centralwidget);
+        pushButton_Pause->setObjectName("pushButton_Pause");
+        pushButton_Pause->setGeometry(QRect(120, 180, 101, 31));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 800, 21));
+        menubar->setGeometry(QRect(0, 0, 800, 25));
         menuPower_Meter = new QMenu(menubar);
         menuPower_Meter->setObjectName("menuPower_Meter");
         MainWindow->setMenuBar(menubar);
@@ -194,6 +198,7 @@ public:
         pushButton_Start->setText(QCoreApplication::translate("MainWindow", "Start", nullptr));
         pushButton_Reset->setText(QCoreApplication::translate("MainWindow", "Reset", nullptr));
         pushButton_Reset_2->setText(QCoreApplication::translate("MainWindow", "Disconnect", nullptr));
+        pushButton_Pause->setText(QCoreApplication::translate("MainWindow", "Pause", nullptr));
         menuPower_Meter->setTitle(QCoreApplication::translate("MainWindow", "Power Meter", nullptr));
     } // retranslateUi
 
