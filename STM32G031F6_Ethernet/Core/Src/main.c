@@ -41,7 +41,7 @@
 
 //Power
 uint16_t vbus, vshunt, current,Power;
-uint16_t Total_power,Last_Total_power;
+uint16_t Total_power = 0,Last_Total_power = 0;
 uint16_t Second;
 //W5500 Settings
 #define SOCK_TCPC   0
@@ -61,7 +61,7 @@ uint8_t RSR_len;
 uint8_t data_buf[]="Start";
 uint8_t Disconnect;
 uint8_t socket_id=22;
-uint8_t State = 0;
+uint8_t State = 1;
 
 /* USER CODE END PD */
 
@@ -183,15 +183,13 @@ int main(void)
 	  current = INA219_ReadCurrent(&ina219);
 	  __HAL_TIM_SET_COUNTER(&htim2,0);
 	  Power=(((float)(vbus)/1000*(float)(current)/1000))*10;//W*10
-	  Total_power = Total_power + (((float)(Power)/10)*((float)(Second)/(3600*1000)))*100*10;//mW/h*10
 	  recv_len = recv(SOCK_TCPC, data_buf, sizeof(data_buf));
 	  	  if (recv_len > 0) {
 	  	  	  	          	  data_buf[recv_len] = '\0';
 	  	  	  	            }
 	  //Command
 	  if(strstr(data_buf,"Start") != 0){
-		 Total_power =0;
-		 State == 1;
+		Total_power = Total_power + (((float)(Power)/10)*((float)(Second)/(3600*1000)))*100*10;//mW/h*10
 	 }
 
 	 else if(strstr(data_buf,"Pause") != 0){
@@ -205,9 +203,6 @@ int main(void)
 		 close(SOCK_TCPC);
 		 Total_power = 0;
 	 	 Connect = 0 ;
-	 	 vbus = 0;
-	 	 current =0;
-	 	 Power = 0;
 	 	 Total_power =0;
 	 	 }
 
