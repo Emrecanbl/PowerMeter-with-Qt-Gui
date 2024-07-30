@@ -189,16 +189,20 @@ int main(void)
 	  	  	  	            }
 	  //Command
 	  if(strstr(data_buf,"Start") != 0){
-		Total_power = Total_power + (((float)(Power)/10)*((float)(Second)/(3600*1000)))*100*10;//mW/h*10
+		// Power consumption is calculated and added to the total power consumption.
+		  Total_power = Total_power + (((float)(Power)/10)*((float)(Second)/(3600*1000)))*100*10;//mW/h*10
 	 }
 
 	 else if(strstr(data_buf,"Pause") != 0){
-	  		   Total_power = Last_Total_power;
+	  	// Power consumption is stopped and the last saved value is restored.	 
+		 Total_power = Last_Total_power;
 	  	   	}
 	 else if(strstr(data_buf,"Reset") != 0){
-	 	  		   Total_power = 0;
+	 	 // Power consumption is reset.
+		 Total_power = 0;
 	 	  	   	}
 	 else if(strstr(data_buf,"Disco") != 0){
+		 //The connection is disconnected and the total power consumption is reset to zero.
 		 disconnect(SOCK_TCPC);
 		 close(SOCK_TCPC);
 		 Total_power = 0;
