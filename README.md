@@ -64,8 +64,3 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 
 Driver I used for Ina 219 sensor :
 https://github.com/komuch/PSM_INA219_STM32
-
-
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
